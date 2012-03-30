@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+
+.orgHeiglMailProxy {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    
+}

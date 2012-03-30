@@ -1,0 +1,33 @@
+-----------------
+OrgHeiglMailproxy
+-----------------
+
+This module allows creation of mailto-link using obfuscated eMail-addresses.
+
+The provided eMail-Address will be obfuscated by simply reversing it. Using CSS
+the eMail-address will be perfectly readable in the default HTML-output but 
+robots greping the site will simply see a 'reversed' eMail-address or some 
+garbage.
+
+By clicking on the link the reversed eMail-address will be send to a proxy that
+simply redirects the browser to a mailto-url containing the corret eMail-address
+
+USage:
+------
+
+1. In your application.conf-file add the Module to the list of modules
+2. In your view-script you can then add the following code snippet to create a
+mailto link to the address info@example.com:
+
+::
+
+    <?php echo $this->mailto('info@example.com');
+
+The second parameter is optional and its content will be set as link-name (The
+stuff between the <a> and </a>)
+
+The third parameter can be an associative array with further attributes for 
+the anchor-tag. Setting a specific class can be achieved via the following 
+array: {{ array('class'=> 'MyClassName')); }}
+If you want to set the third parameter but omit the second, pass '{{null}}' as 
+second parameter.
