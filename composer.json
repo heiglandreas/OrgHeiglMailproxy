@@ -1,5 +1,5 @@
 {
-    "name" : "Org_Heigl/iMailproxy", 
+    "name" : "org_heigl/mailproxy", 
     "type" : "library",
     "description" : "Display eMail-Adresses without being spamed",
     "keywords" : [ "email","address","spam","protection"],
