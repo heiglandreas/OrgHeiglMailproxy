@@ -19,5 +19,8 @@
         "psr-0" : {
             "OrgHeiglMailproxy" : "src"
         }
+        "classmap": [
+            "./",
+        ]
     }
 }
