@@ -30,33 +30,46 @@
  * @link      http://github.com/heiglandreas/mailproxyModule
  */
 return array(
-    'di' => array(
-        'instance' => array(
-           // 'Zend\View\HelperLoader' => array('parameters' => array(
-           //     'Zend\View\HelperLoader::registerPlugin:shortName' => 'mailto',
-           //     'Zend\View\HelperLoader::registerPlugin:className' => 'OrgHeiglMailproxy\View\Helper\Mailto.php',
-           // )),
-            'Zend\Mvc\Router\RouteStack' => array('parameters' => array(
-                'routes' => array(
-                    'mailproxy' => array(
-                        'type' => 'Segment',
-                        'options' => array(
-                            'route' => '/m/mailproxy[/:id]',
-                            'defaults' => array(
-                                'controller' => 'OrgHeiglMailproxy\Controller\ProxyController',
-                                'action'     => 'index',
-                                'id'         => 'gu.php@ofni',
-                            ),
-                        ),
-                        'may_terminate' => true,
-                        'child_routes' => array(
-                            'definition' => array(
-                                'type' => 'Wildcard',
-                            )
-                        ),
+    'view_helpers' => array(
+        'invokables' => array(
+            'mailto' => 'OrgHeiglMailproxy\View\Helper\Mailto',
+		),
+	),
+	'controllers' => array(
+		'invokables' => array(
+			'OrgHeiglMailproxy\Controller\ProxyController' => 'OrgHeiglMailproxy\Controller\ProxyController'
+		),
+	),
+	'router' => array(
+		'routes' => array(
+        	'mailproxy' => array(
+            	'type' => 'Segment',
+                'options' => array(
+                	'route' => '/mailproxy[/:id]',
+                    'defaults' => array(
+                    	'controller' => 'OrgHeiglMailproxy\Controller\ProxyController',
+                        'action'     => 'index',
+                        'id'         => 'gu.php@ofni',
                     ),
                 ),
-            )),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'definition' => array(
+                        'type' => 'Wildcard',
+                    )
+                ),
+            ),
         ),
+    ),
+    'view_manager' => array(
+    	'display_not_found_reason' => true,
+    	'display_exceptions'       => true,
+    	'doctype'                  => 'HTML5',
+    	'not_found_template'       => 'error/404',
+    	'exception_template'       => 'error/index',
+    	'template_map' => array(),
+    	'template_path_stack' => array(
+    		__DIR__ . '/../view',
+    	),
     ),
 );

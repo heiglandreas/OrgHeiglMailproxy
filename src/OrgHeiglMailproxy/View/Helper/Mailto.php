@@ -31,7 +31,7 @@
  */
 namespace OrgHeiglMailproxy\View\Helper;
 
-use Zend\View\Helper\HtmlElement;
+use Zend\View\Helper\AbstractHtmlElement as HtmlElement;
 
 /**
  * A view helper taht generates a mailto-link with an obfuscated eMail-address
@@ -82,7 +82,7 @@ class Mailto extends HtmlElement
             $params['class'] = implode(' ', $classes);
         }
 
-        $xhtml = '<a ' . $this->_htmlAttribs($params) . '>' . $linktext . '</a>';
+        $xhtml = '<a ' . $this->htmlAttribs($params) . '>' . $linktext . '</a>';
 
         return $xhtml;
 

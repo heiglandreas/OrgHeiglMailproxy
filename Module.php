@@ -32,9 +32,10 @@
 
 namespace OrgHeiglMailproxy;
 
-use Zend\Module\Manager,
+use Zend\ModuleManager\ModuleManager,
     Zend\EventManager\StaticEventManager,
-    Zend\Module\Consumer\AutoloaderProvider;
+    Zend\Mvc\ModuleRouteListener;
+    
 
 /**
  * The Module-Provider
@@ -48,33 +49,14 @@ use Zend\Module\Manager,
  * @since     06.03.2012
  * @link      http://github.com/heiglandreas/mailproxyModule
  */
-class Module implements AutoloaderProvider
+class Module
 {
-    public function init(Manager $moduleManager)
+    public function init(ModuleManager $moduleManager)
     {
         $events = StaticEventManager::getInstance();
         $events->attach('bootstrap', 'bootstrap', array($this, 'initializeView'), 100);
     }
-
-    public function getAutoloaderConfig()
-    {
-        return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
-                __DIR__ . '/autoload_classmap.php',
-            ),
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ),
-            ),
-        );
-    }
-
-    public function getConfig()
-    {
-        return include __DIR__ . '/config/module.config.php';
-    }
-
+    
     public function initializeView($e)
     {
         $app          = $e->getParam('application');
@@ -82,5 +64,30 @@ class Module implements AutoloaderProvider
         $locator      = $app->getLocator();
         $renderer     = $locator->get('Zend\View\HelperLoader');
         $renderer->registerPlugin('mailto', 'OrgHeiglMailproxy\View\Helper\Mailto');
+    }
+    
+
+    public function onBootstrap($e)
+    {
+    	$e->getApplication()->getServiceManager()->get('translator');
+    	$eventManager        = $e->getApplication()->getEventManager();
+    	$moduleRouteListener = new ModuleRouteListener();
+    	$moduleRouteListener->attach($eventManager);
+    }
+    
+    public function getConfig()
+    {
+    	return include __DIR__ . '/config/module.config.php';
+    }
+    
+    public function getAutoloaderConfig()
+    {
+    	return array(
+    			'Zend\Loader\StandardAutoloader' => array(
+    					'namespaces' => array(
+    							__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+    					),
+    			),
+    	);
     }
 }

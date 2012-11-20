@@ -31,10 +31,11 @@
  */
 namespace OrgHeiglMailproxy\Controller;
 
-use Zend\Mvc\Controller\ActionController,
-    Zend\Http\Headers,
-    Zend\Http\Header\Location
-;
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Http\Headers;
+use Zend\Http\Header\Location;
+use Zend\View\Model\ViewModel;
+use Zend\Uri\Mailto;
 
 /**
  * A controller that proxies mailto-requests
@@ -48,7 +49,7 @@ use Zend\Mvc\Controller\ActionController,
  * @since     06.03.2012
  * @link      http://github.com/heiglandreas/mailproxyModule
  */
-class ProxyController extends ActionController
+class ProxyController extends AbstractActionController
 {
     /**
      * Proxy a given http-request to a mailto-request
@@ -63,6 +64,12 @@ class ProxyController extends ActionController
         unset($params['controller']);
         unset($params['action']);
         $querystring = http_build_query($params);
-        $this->redirect()->toUrl('mailto:' . strrev($id) . '?' . $querystring);
+        $mailtoUri = 'mailto:' . strrev($id) . '?' . $querystring;
+        $redirect = new Mailto($mailtoUri);
+        $this->redirect()->toUrl($redirect);
+        
+        $result = new ViewModel();
+        $result->setTerminal(true);
+        return $result;
     }
 }
