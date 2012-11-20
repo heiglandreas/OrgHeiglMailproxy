@@ -75,7 +75,7 @@ class Mailto extends HtmlElement
         if ( null === $linktext ) {
             $linktext = strrev($address);
             $classes = array();
-            if (isset($params['class']) {
+            if (isset($params['class'])) {
                 $classes = $params['class'];
                 $classes = explode(' ', $classes);
             }
