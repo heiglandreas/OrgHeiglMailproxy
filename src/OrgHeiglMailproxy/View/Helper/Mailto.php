@@ -70,6 +70,11 @@ class Mailto extends HtmlElement
     public function __invoke($address, $linktext = null, $params = array())
     {
         $url = $this->getView()->url('mailproxy');
+        $this->getView()->headStyle()->appendStyle('.orgHeiglMailProxy {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+
+}');
 
         $params = array_merge(array('href'  => $url . '/' . strrev($address)), $params);
         if ( null === $linktext ) {
