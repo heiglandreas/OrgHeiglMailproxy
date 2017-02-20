@@ -29,11 +29,9 @@
  * @since     06.03.2012
  * @link      http://github.com/heiglandreas/mailproxyModule
  */
-namespace OrgHeiglMailproxy\Controller;
+namespace Org_Heigl\Mailproxy\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Http\Headers;
-use Zend\Http\Header\Location;
 use Zend\View\Model\ViewModel;
 use Zend\Uri\Mailto;
 
@@ -70,6 +68,7 @@ class ProxyController extends AbstractActionController
         
         $result = new ViewModel();
         $result->setTerminal(true);
+
         return $result;
     }
 }

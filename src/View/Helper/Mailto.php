@@ -29,7 +29,7 @@
  * @since     06.03.2012
  * @link      http://github.com/heiglandreas/mailproxyModule
  */
-namespace OrgHeiglMailproxy\View\Helper;
+namespace Org_Heigl\Mailproxy\View\Helper;
 
 use Zend\View\Helper\AbstractHtmlElement as HtmlElement;
 
@@ -56,7 +56,7 @@ class Mailto extends HtmlElement
      *
      * var string $class
      */
-    protected $mailtoclass = 'orgHeiglMailProxy';
+    private $mailtoclass = 'orgHeiglMailProxy';
     /**
      * create a link to the mailproxy-url
      *
@@ -70,7 +70,7 @@ class Mailto extends HtmlElement
     public function __invoke($address, $linktext = null, $params = array())
     {
         $url = $this->getView()->url('mailproxy');
-        $this->getView()->headStyle()->appendStyle('.orgHeiglMailProxy {
+        $this->getView()->headStyle()->appendStyle('.' . $this->mailtoclass . '{
     direction: rtl;
     unicode-bidi: bidi-override;
 
