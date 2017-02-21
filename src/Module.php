@@ -30,11 +30,12 @@
  * @link      http://github.com/heiglandreas/mailproxyModule
  */
 
-namespace OrgHeiglMailproxy;
+namespace Org_Heigl\Mailproxy;
 
-use Zend\ModuleManager\ModuleManager,
-    Zend\EventManager\StaticEventManager,
-    Zend\Mvc\ModuleRouteListener;
+use Org_Heigl\Mailproxy\View\Helper\Mailto;
+use Zend\ModuleManager\ModuleManager;
+use Zend\EventManager\StaticEventManager;
+use Zend\Mvc\ModuleRouteListener;
     
 
 /**
@@ -60,16 +61,14 @@ class Module
     public function initializeView($e)
     {
         $app          = $e->getParam('application');
-        $basePath     = $app->getRequest()->getBasePath();
         $locator      = $app->getLocator();
         $renderer     = $locator->get('Zend\View\HelperLoader');
-        $renderer->registerPlugin('mailto', 'OrgHeiglMailproxy\View\Helper\Mailto');
+        $renderer->registerPlugin('mailto', Mailto::class);
     }
     
 
     public function onBootstrap($e)
     {
-    	$e->getApplication()->getServiceManager()->get('translator');
     	$eventManager        = $e->getApplication()->getEventManager();
     	$moduleRouteListener = new ModuleRouteListener();
     	$moduleRouteListener->attach($eventManager);
@@ -78,16 +77,5 @@ class Module
     public function getConfig()
     {
     	return include __DIR__ . '/config/module.config.php';
-    }
-    
-    public function getAutoloaderConfig()
-    {
-    	return array(
-    			'Zend\Loader\StandardAutoloader' => array(
-    					'namespaces' => array(
-    							__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-    					),
-    			),
-    	);
     }
 }

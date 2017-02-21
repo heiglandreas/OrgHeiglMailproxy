@@ -51,10 +51,8 @@ class ProxyController extends AbstractActionController
 {
     /**
      * Proxy a given http-request to a mailto-request
-     *
-     * @return void
      */
-    public function indexAction()
+    public function indexAction() : ViewModel
     {
         $params = $this->getEvent()->getRouteMatch()->getParams();
         $id = $params['id'];

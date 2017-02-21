@@ -29,15 +29,21 @@
  * @since     06.03.2012
  * @link      http://github.com/heiglandreas/mailproxyModule
  */
+
+namespace Org_Heigl\Mailproxy;
+
+use Org_Heigl\Mailproxy\Controller\ProxyController;
+use Org_Heigl\Mailproxy\View\Helper\Mailto;
+
 return array(
     'view_helpers' => array(
         'invokables' => array(
-            'mailto' => 'OrgHeiglMailproxy\View\Helper\Mailto',
+            'mailto' => Mailto::class,
 		),
 	),
 	'controllers' => array(
 		'invokables' => array(
-			'OrgHeiglMailproxy\Controller\ProxyController' => 'OrgHeiglMailproxy\Controller\ProxyController'
+			ProxyController::class => ProxyController::class
 		),
 	),
 	'router' => array(
@@ -47,9 +53,9 @@ return array(
                 'options' => array(
                 	'route' => '/mailproxy[/:id]',
                     'defaults' => array(
-                    	'controller' => 'OrgHeiglMailproxy\Controller\ProxyController',
+                    	'controller' => ProxyController::class,
                         'action'     => 'index',
-                        'id'         => 'gu.php@ofni',
+                        'id'         => 'moc.elpmaxe@ofni',
                     ),
                 ),
                 'may_terminate' => true,

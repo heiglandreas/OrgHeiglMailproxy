@@ -69,14 +69,13 @@ class Mailto extends HtmlElement
      */
     public function __invoke($address, $linktext = null, $params = array())
     {
-        $url = $this->getView()->url('mailproxy');
+        $url = $this->getView()->url('mailproxy', ['id' => strrev($address)]);
         $this->getView()->headStyle()->appendStyle('.' . $this->mailtoclass . '{
     direction: rtl;
     unicode-bidi: bidi-override;
 
 }');
 
-        $params = array_merge(array('href'  => $url . '/' . strrev($address)), $params);
         if ( null === $linktext ) {
             $linktext = strrev($address);
             $classes = array();
@@ -90,7 +89,7 @@ class Mailto extends HtmlElement
             $params['class'] = implode(' ', $classes);
         }
 
-        $xhtml = '<a ' . $this->htmlAttribs($params) . '>' . $linktext . '</a>';
+        $xhtml = '<a href="' . $url . '"' . $this->htmlAttribs($params) . '>' . $linktext . '</a>';
 
         return $xhtml;
 

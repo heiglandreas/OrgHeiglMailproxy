@@ -29,7 +29,59 @@
 
 namespace Org_Heigl\MailproxyTest\Controller;
 
-class ProxyControllerTest extends \PHPUnit_Framework_TestCase
-{
+use Org_Heigl\Mailproxy\Controller\ProxyController;
+use Mockery as M;
+use PHPUnit\Framework\TestCase;
+use Zend\Http\Response;
+use Zend\Mvc\MvcEvent;
+use Zend\Router\Http\RouteMatch;
+use Zend\Stdlib\ResponseInterface;
+use Zend\View\Model\ViewModel;
 
+class ProxyControllerTest extends TestCase
+{
+    /**
+     * @dataProvider ResolutionProvider
+     * @covers \Org_Heigl\Mailproxy\Controller\ProxyController
+     */
+    public function testResolution($input, $redirect, $parameters = null)
+    {
+        $controller = new ProxyController();
+
+        $params = [
+            'id' => $input,
+            'controller' => '',
+            'action' => '',
+        ];
+        if (is_array($parameters)) {
+            $params = array_merge($params, $parameters);
+        }
+        $routeMatch = M::mock(RouteMatch::class);
+        $routeMatch->shouldReceive('getParams')->andReturn($params);
+
+        $response = new Response();
+
+        $event = M::mock(MvcEvent::class);
+        $event->shouldReceive('getRouteMatch')->andReturn($routeMatch);
+        $event->shouldReceive('getResponse')->andReturn($response);
+
+        $controller->setEvent($event);
+
+        $model = $controller->indexAction();
+        $this->assertInstanceOf(ViewModel::class, $model);
+        $this->assertTrue($model->terminate());
+
+        $this->assertEquals(['Location' => $redirect], $response->getHeaders()->toArray());
+        $this->assertEquals('302', $response->getStatusCode());
+
+
+    }
+
+    public function resolutionProvider()
+    {
+        return [
+            ['moc.elpmaxe@ofni', 'mailto:info@example.com'],
+            ['moc.elpmaxe@ofni', 'mailto:info@example.com?subject=test', ['subject' => 'test']],
+        ];
+    }
 }
