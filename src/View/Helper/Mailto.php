@@ -76,14 +76,14 @@ class Mailto extends HtmlElement
 
 }');
 
-        if ( null === $linktext ) {
+        if (null === $linktext) {
             $linktext = strrev($address);
             $classes = array();
             if (isset($params['class'])) {
                 $classes = $params['class'];
                 $classes = explode(' ', $classes);
             }
-            if ( ! in_array($this->mailtoclass, $classes) ) {
+            if (! in_array($this->mailtoclass, $classes)) {
                 $classes[] = $this->mailtoclass;
             }
             $params['class'] = implode(' ', $classes);
@@ -92,6 +92,5 @@ class Mailto extends HtmlElement
         $xhtml = '<a href="' . $url . '"' . $this->htmlAttribs($params) . '>' . $linktext . '</a>';
 
         return $xhtml;
-
     }
 }

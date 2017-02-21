@@ -73,8 +73,6 @@ class ProxyControllerTest extends TestCase
 
         $this->assertEquals(['Location' => $redirect], $response->getHeaders()->toArray());
         $this->assertEquals('302', $response->getStatusCode());
-
-
     }
 
     public function resolutionProvider()

@@ -36,7 +36,6 @@ use Org_Heigl\Mailproxy\View\Helper\Mailto;
 use Zend\ModuleManager\ModuleManager;
 use Zend\EventManager\StaticEventManager;
 use Zend\Mvc\ModuleRouteListener;
-    
 
 /**
  * The Module-Provider
@@ -69,13 +68,13 @@ class Module
 
     public function onBootstrap($e)
     {
-    	$eventManager        = $e->getApplication()->getEventManager();
-    	$moduleRouteListener = new ModuleRouteListener();
-    	$moduleRouteListener->attach($eventManager);
+        $eventManager        = $e->getApplication()->getEventManager();
+        $moduleRouteListener = new ModuleRouteListener();
+        $moduleRouteListener->attach($eventManager);
     }
     
     public function getConfig()
     {
-    	return include __DIR__ . '/config/module.config.php';
+        return include __DIR__ . '/config/module.config.php';
     }
 }

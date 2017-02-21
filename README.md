@@ -1,3 +1,16 @@
+[![Build Status](https://travis-ci.org/heiglandreas/OrgHeiglMailproxy.svg?branch=master)](https://travis-ci.org/heiglandreas/OrgHeiglMailproxy)
+[![Coverage Status](https://coveralls.io/repos/github/heiglandreas/OrgHeiglMailproxy/badge.svg?branch=master)](https://coveralls.io/github/heiglandreas/OrgHeiglMailproxy?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/heiglandreas/OrgHeiglMailproxy/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/heiglandreas/OrgHeiglMailproxy/?branch=master)
+[![Code Climate](https://lima.codeclimate.com/github/heiglandreas/OrgHeiglMailproxy/badges/gpa.svg)](https://lima.codeclimate.com/github/heiglandreas/OrgHeiglMailproxy)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c75ab20539d34ef297c6b3ac5bfd801c)](https://www.codacy.com/app/github_70/OrgHeiglMailproxy?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=heiglandreas/OrgHeiglMailproxy&amp;utm_campaign=Badge_Grade)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/f7f08ce9-8d75-4c1b-be51-9d500f871fae/mini.png)](https://insight.sensiolabs.com/projects/f7f08ce9-8d75-4c1b-be51-9d500f871fae)
+
+[![Latest Stable Version](https://poser.pugx.org/org_heigl/mailproxy/v/stable)](https://packagist.org/packages/org_heigl/mailproxy)
+[![Total Downloads](https://poser.pugx.org/org_heigl/mailproxy/downloads)](https://packagist.org/packages/org_heigl/mailproxy)
+[![License](https://poser.pugx.org/org_heigl/mailproxy/license)](https://packagist.org/packages/org_heigl/mailproxy)
+[![composer.lock](https://poser.pugx.org/org_heigl/mailproxy/composerlock)](https://packagist.org/packages/org_heigl/mailproxy)
+
+
 # Org_Heigl\Mailproxy
 
 This Zend-Framework-module allows creation of mailto-links using obfuscated
