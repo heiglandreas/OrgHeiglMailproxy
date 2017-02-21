@@ -3,8 +3,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/heiglandreas/OrgHeiglMailproxy/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/heiglandreas/OrgHeiglMailproxy/?branch=master)
 [![Code Climate](https://lima.codeclimate.com/github/heiglandreas/OrgHeiglMailproxy/badges/gpa.svg)](https://lima.codeclimate.com/github/heiglandreas/OrgHeiglMailproxy)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c75ab20539d34ef297c6b3ac5bfd801c)](https://www.codacy.com/app/github_70/OrgHeiglMailproxy?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=heiglandreas/OrgHeiglMailproxy&amp;utm_campaign=Badge_Grade)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/f7f08ce9-8d75-4c1b-be51-9d500f871fae/mini.png)](https://insight.sensiolabs.com/projects/f7f08ce9-8d75-4c1b-be51-9d500f871fae)
-
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/8563ea23-d916-4541-9067-17e6d29760f3/mini.png)](https://insight.sensiolabs.com/projects/8563ea23-d916-4541-9067-17e6d29760f3)
 [![Latest Stable Version](https://poser.pugx.org/org_heigl/mailproxy/v/stable)](https://packagist.org/packages/org_heigl/mailproxy)
 [![Total Downloads](https://poser.pugx.org/org_heigl/mailproxy/downloads)](https://packagist.org/packages/org_heigl/mailproxy)
 [![License](https://poser.pugx.org/org_heigl/mailproxy/license)](https://packagist.org/packages/org_heigl/mailproxy)
