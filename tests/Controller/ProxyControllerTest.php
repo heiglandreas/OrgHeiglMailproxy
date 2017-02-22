@@ -42,7 +42,7 @@ class ProxyControllerTest extends TestCase
 {
     /**
      * @dataProvider ResolutionProvider
-     * @covers \Org_Heigl\Mailproxy\Controller\ProxyController
+     * @covers \Org_Heigl\Mailproxy\Controller\ProxyController::indexAction()
      */
     public function testResolution($input, $redirect, $parameters = null)
     {
@@ -67,10 +67,7 @@ class ProxyControllerTest extends TestCase
 
         $controller->setEvent($event);
 
-        $model = $controller->indexAction();
-        $this->assertInstanceOf(ViewModel::class, $model);
-        $this->assertTrue($model->terminate());
-
+        $this->assertSame($response, $controller->indexAction());
         $this->assertEquals(['Location' => $redirect], $response->getHeaders()->toArray());
         $this->assertEquals('302', $response->getStatusCode());
     }

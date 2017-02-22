@@ -40,14 +40,12 @@ use Zend\View\Helper\AbstractHtmlElement as HtmlElement;
  * "normal" way. clicking the link will call the ProxyController and redirect to
  * a mailto: url which will open the users Mail-Client
  *
- * @category  MailProxy
- * @package   OrgHeiglMailproxy
  * @author    Andreas Heigl<andreas@heigl.org>
- * @copyright 2011-2012 Andreas Heigl
+ * @copyright Andreas Heigl
  * @license   http://www.opesource.org/licenses/mit-license.php MIT-License
  * @version   0.0
  * @since     06.03.2012
- * @link      http://github.com/heiglandreas/mailproxyModule
+ * @link      http://github.com/heiglandreas/OrgHeiglMailproxy
  */
 class Mailto extends HtmlElement
 {
