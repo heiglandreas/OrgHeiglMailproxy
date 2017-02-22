@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright (c) 2011-2012 Andreas Heigl<andreas@heigl.org>
+ * Copyright (c) Andreas Heigl<andreas@heigl.org>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,39 +21,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @category  MailProxy
- * @package   OrgHeiglMailproxy
  * @author    Andreas Heigl<andreas@heigl.org>
- * @copyright 2011-2012 Andreas Heigl
+ * @copyright Andreas Heigl
  * @license   http://www.opesource.org/licenses/mit-license.php MIT-License
  * @version   0.0
  * @since     06.03.2012
- * @link      http://github.com/heiglandreas/mailproxyModule
+ * @link      http://github.com/heiglandreas/OrgHeiglMailproxy
  */
 namespace Org_Heigl\Mailproxy\Controller;
 
+use Zend\Http\Response;
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
 use Zend\Uri\Mailto;
 
 /**
  * A controller that proxies mailto-requests
  *
- * @category  MailProxy
- * @package   OrgHeiglMailproxy
  * @author    Andreas Heigl<andreas@heigl.org>
- * @copyright 2011-2012 Andreas Heigl
+ * @copyright Andreas Heigl
  * @license   http://www.opesource.org/licenses/mit-license.php MIT-License
  * @version   0.0
  * @since     06.03.2012
- * @link      http://github.com/heiglandreas/mailproxyModule
+ * @link      http://github.com/heiglandreas/OrgHeiglMailproxy
  */
 class ProxyController extends AbstractActionController
 {
     /**
      * Proxy a given http-request to a mailto-request
      */
-    public function indexAction() : ViewModel
+    public function indexAction() : Response
     {
         $params = $this->getEvent()->getRouteMatch()->getParams();
         $id = $params['id'];
@@ -62,11 +59,8 @@ class ProxyController extends AbstractActionController
         $querystring = http_build_query($params);
         $mailtoUri = 'mailto:' . strrev($id) . '?' . $querystring;
         $redirect = new Mailto($mailtoUri);
-        $this->redirect()->toUrl($redirect);
-        
-        $result = new ViewModel();
-        $result->setTerminal(true);
 
-        return $result;
+        return $this->redirect()->toUrl($redirect);
+
     }
 }

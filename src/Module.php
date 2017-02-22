@@ -32,49 +32,30 @@
 
 namespace Org_Heigl\Mailproxy;
 
-use Org_Heigl\Mailproxy\View\Helper\Mailto;
-use Zend\ModuleManager\ModuleManager;
-use Zend\EventManager\StaticEventManager;
 use Zend\Mvc\ModuleRouteListener;
+use Zend\Mvc\MvcEvent;
 
 /**
  * The Module-Provider
  *
- * @category  MailProxy
- * @package   OrgHeiglMailproxy
  * @author    Andreas Heigl<andreas@heigl.org>
- * @copyright 2011-2012 Andreas Heigl
+ * @copyright Andreas Heigl
  * @license   http://www.opesource.org/licenses/mit-license.php MIT-License
  * @version   0.0
  * @since     06.03.2012
- * @link      http://github.com/heiglandreas/mailproxyModule
+ * @link      http://github.com/heiglandreas/OrgHeiglMailproxy
  */
 class Module
 {
-    public function init(ModuleManager $moduleManager)
+    public function onBootstrap(MvcEvent $event)
     {
-        $events = StaticEventManager::getInstance();
-        $events->attach('bootstrap', 'bootstrap', array($this, 'initializeView'), 100);
-    }
-    
-    public function initializeView($e)
-    {
-        $app          = $e->getParam('application');
-        $locator      = $app->getLocator();
-        $renderer     = $locator->get('Zend\View\HelperLoader');
-        $renderer->registerPlugin('mailto', Mailto::class);
-    }
-    
-
-    public function onBootstrap($e)
-    {
-        $eventManager        = $e->getApplication()->getEventManager();
+        $eventManager        = $event->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
     }
     
     public function getConfig()
     {
-        return include __DIR__ . '/config/module.config.php';
+        return include __DIR__ . '/../config/module.config.php';
     }
 }

@@ -35,12 +35,15 @@ namespace Org_Heigl\Mailproxy;
 use Org_Heigl\Mailproxy\Controller\ProxyController;
 use Org_Heigl\Mailproxy\View\Helper\Mailto;
 
-return array(
-    'view_helpers' => array(
-        'invokables' => array(
+return [
+    'view_helpers' => [
+        'invokables' => [
+            Mailto::class => Mailto::class,
+        ],
+        'aliases' => [
             'mailto' => Mailto::class,
-		),
-	),
+        ],
+	],
 	'controllers' => array(
 		'invokables' => array(
 			ProxyController::class => ProxyController::class
@@ -67,15 +70,4 @@ return array(
             ),
         ),
     ),
-    'view_manager' => array(
-    	'display_not_found_reason' => true,
-    	'display_exceptions'       => true,
-    	'doctype'                  => 'HTML5',
-    	'not_found_template'       => 'error/404',
-    	'exception_template'       => 'error/index',
-    	'template_map' => array(),
-    	'template_path_stack' => array(
-    		__DIR__ . '/../view',
-    	),
-    ),
-);
+];
