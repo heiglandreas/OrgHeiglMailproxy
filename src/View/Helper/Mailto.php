@@ -29,7 +29,7 @@
  * @since     06.03.2012
  * @link      http://github.com/heiglandreas/mailproxyModule
  */
-namespace OrgHeiglMailproxy\View\Helper;
+namespace Org_Heigl\Mailproxy\View\Helper;
 
 use Zend\View\Helper\AbstractHtmlElement as HtmlElement;
 
@@ -40,14 +40,12 @@ use Zend\View\Helper\AbstractHtmlElement as HtmlElement;
  * "normal" way. clicking the link will call the ProxyController and redirect to
  * a mailto: url which will open the users Mail-Client
  *
- * @category  MailProxy
- * @package   OrgHeiglMailproxy
  * @author    Andreas Heigl<andreas@heigl.org>
- * @copyright 2011-2012 Andreas Heigl
+ * @copyright Andreas Heigl
  * @license   http://www.opesource.org/licenses/mit-license.php MIT-License
  * @version   0.0
  * @since     06.03.2012
- * @link      http://github.com/heiglandreas/mailproxyModule
+ * @link      http://github.com/heiglandreas/OrgHeiglMailproxy
  */
 class Mailto extends HtmlElement
 {
@@ -56,7 +54,7 @@ class Mailto extends HtmlElement
      *
      * var string $class
      */
-    protected $mailtoclass = 'orgHeiglMailProxy';
+    private $mailtoclass = 'orgHeiglMailProxy';
     /**
      * create a link to the mailproxy-url
      *
@@ -69,30 +67,28 @@ class Mailto extends HtmlElement
      */
     public function __invoke($address, $linktext = null, $params = array())
     {
-        $url = $this->getView()->url('mailproxy');
-        $this->getView()->headStyle()->appendStyle('.orgHeiglMailProxy {
+        $url = $this->getView()->url('mailproxy', ['id' => strrev($address)]);
+        $this->getView()->headStyle()->appendStyle('.' . $this->mailtoclass . '{
     direction: rtl;
     unicode-bidi: bidi-override;
 
 }');
 
-        $params = array_merge(array('href'  => $url . '/' . strrev($address)), $params);
-        if ( null === $linktext ) {
+        if (null === $linktext) {
             $linktext = strrev($address);
             $classes = array();
             if (isset($params['class'])) {
                 $classes = $params['class'];
                 $classes = explode(' ', $classes);
             }
-            if ( ! in_array($this->mailtoclass, $classes) ) {
+            if (! in_array($this->mailtoclass, $classes)) {
                 $classes[] = $this->mailtoclass;
             }
             $params['class'] = implode(' ', $classes);
         }
 
-        $xhtml = '<a ' . $this->htmlAttribs($params) . '>' . $linktext . '</a>';
+        $xhtml = '<a href="' . $url . '"' . $this->htmlAttribs($params) . '>' . $linktext . '</a>';
 
         return $xhtml;
-
     }
 }

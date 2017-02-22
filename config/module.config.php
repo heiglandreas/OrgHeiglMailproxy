@@ -29,15 +29,24 @@
  * @since     06.03.2012
  * @link      http://github.com/heiglandreas/mailproxyModule
  */
-return array(
-    'view_helpers' => array(
-        'invokables' => array(
-            'mailto' => 'OrgHeiglMailproxy\View\Helper\Mailto',
-		),
-	),
+
+namespace Org_Heigl\Mailproxy;
+
+use Org_Heigl\Mailproxy\Controller\ProxyController;
+use Org_Heigl\Mailproxy\View\Helper\Mailto;
+
+return [
+    'view_helpers' => [
+        'invokables' => [
+            Mailto::class => Mailto::class,
+        ],
+        'aliases' => [
+            'mailto' => Mailto::class,
+        ],
+	],
 	'controllers' => array(
 		'invokables' => array(
-			'OrgHeiglMailproxy\Controller\ProxyController' => 'OrgHeiglMailproxy\Controller\ProxyController'
+			ProxyController::class => ProxyController::class
 		),
 	),
 	'router' => array(
@@ -47,9 +56,9 @@ return array(
                 'options' => array(
                 	'route' => '/mailproxy[/:id]',
                     'defaults' => array(
-                    	'controller' => 'OrgHeiglMailproxy\Controller\ProxyController',
+                    	'controller' => ProxyController::class,
                         'action'     => 'index',
-                        'id'         => 'gu.php@ofni',
+                        'id'         => 'moc.elpmaxe@ofni',
                     ),
                 ),
                 'may_terminate' => true,
@@ -61,15 +70,4 @@ return array(
             ),
         ),
     ),
-    'view_manager' => array(
-    	'display_not_found_reason' => true,
-    	'display_exceptions'       => true,
-    	'doctype'                  => 'HTML5',
-    	'not_found_template'       => 'error/404',
-    	'exception_template'       => 'error/index',
-    	'template_map' => array(),
-    	'template_path_stack' => array(
-    		__DIR__ . '/../view',
-    	),
-    ),
-);
+];

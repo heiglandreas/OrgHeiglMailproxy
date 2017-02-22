@@ -1,8 +1,8 @@
 {
     "name" : "org_heigl/mailproxy", 
     "type" : "library",
-    "description" : "Display eMail-Adresses without being spamed",
-    "keywords" : [ "email","address","spam","protection"],
+    "description" : "Display clickable eMail-Adresses without being spamed",
+    "keywords" : [ "email","address","spam","protection", "zf3", "zend framework"],
     "homepage" : "http://github.com/heiglandreas/OrgHeiglMailproxy",
     "license" : "MIT",
     "authors" : [
@@ -13,16 +13,24 @@
         "role" : "Developer"
     }],
     "require" : {
-        "php" : ">=5.3.0",
-        "zendframework/zendframework": ">=2.1"
+        "php" : "^7.0",
+        "zendframework/zend-mvc": "^3.0",
+        "zendframework/zend-uri": "^2.5",
+        "zendframework/zend-view": "^2.8",
+        "zendframework/zend-modulemanager": "^2.7"
     },
     "autoload" : {
-        "psr-0" : {
-            "OrgHeiglMailproxy" : "src"
-        },
-        "classmap": [
-            "./"
-        ]
+        "psr-4" : {
+            "Org_Heigl\\Mailproxy\\" : "src/"
+        }
     },
-    "minimum-stability": "dev"
+    "autoload-dev" : {
+        "psr-4" : {
+            "Org_Heigl\\MailproxyTest\\" : "tests/"
+        }
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.8",
+        "phpunit/phpunit": "^6.0"
+    }
 }
