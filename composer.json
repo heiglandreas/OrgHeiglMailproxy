@@ -31,6 +31,6 @@
     },
     "require-dev": {
         "mockery/mockery": "^0.9.8",
-        "phpunit/phpunit": "^6.0"
+        "phpunit/phpunit": "^6.0 || ^8.0"
     }
 }
